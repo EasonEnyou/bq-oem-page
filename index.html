@@ -107,10 +107,16 @@
         }
 
         .hero {
-            padding: 160px 0 80px;
+            padding: 140px 0 80px;
             position: relative;
             overflow: hidden;
             scroll-margin-top: 65px;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 540px;
         }
 
         .hero-bg {
@@ -118,8 +124,10 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 600px;
-            z-index: -1;
+            height: 540px;
+            z-index: 0;
+            display: block !important;
+            visibility: visible !important;
         }
 
         .hero-bg img {
@@ -152,9 +160,14 @@
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             align-items: center;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative !important;
+            z-index: 1 !important;
+            width: 100%;
         }
 
         .hero-logo-title {
@@ -251,11 +264,13 @@
             padding: 56px 0;
             max-width: 1440px;
             margin: 0 auto;
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             align-items: center;
             gap: 32px;
             scroll-margin-top: 65px;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .section-header {
@@ -444,11 +459,13 @@
         .products-section {
             background: #FFFFFF;
             padding: 32px 0 23px;
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             align-items: center;
             gap: 32px;
             scroll-margin-top: 65px;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .products-container {
@@ -512,7 +529,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -650,6 +667,8 @@
         .footer {
             background: #F5F5F5;
             padding: 56px 0 32px;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .footer-content {
@@ -1014,7 +1033,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(29, 33, 41, 0.5);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -1092,6 +1111,396 @@
         .play-icon {
             cursor: pointer;
         }
+
+        /* 商品详情弹框 - 设计稿样式 */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(29, 33, 41, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .product-modal.active {
+            display: flex;
+        }
+
+        .product-modal-content {
+            background: #ffffff;
+            border-radius: 12px;
+            width: 920px;
+            overflow: hidden;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 弹框顶部导航 */
+        .product-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            height: 64px;
+            border-bottom: 1px solid #e5e6eb;
+            flex-shrink: 0;
+        }
+
+        .product-modal-header-title {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .product-modal-close {
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.45;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .product-modal-close:hover {
+            opacity: 1;
+        }
+
+        .product-modal-close::before,
+        .product-modal-close::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 2px;
+            background: #1d2129;
+            border-radius: 1px;
+        }
+
+        .product-modal-close::before {
+            transform: rotate(45deg);
+        }
+
+        .product-modal-close::after {
+            transform: rotate(-45deg);
+        }
+
+        /* 弹框内容区 */
+        .product-modal-body {
+            display: flex;
+            padding: 48px;
+            gap: 32px;
+            overflow: hidden;
+            width: 920px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+
+        /* 左侧商品卡片 */
+        .product-modal-left {
+            width: 279px;
+            background: #ffffff;
+            border-radius: 16px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-modal-image-container {
+            width: 279px;
+            height: 156px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .product-modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-modal-product-info {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-sizing: border-box;
+        }
+
+        .product-modal-title {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            color: #1d2129;
+            text-align: center;
+        }
+
+        .product-modal-desc {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #86909c;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 右侧详细介绍区 */
+        .product-modal-right {
+            flex: 1;
+            width: 513px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            overflow-y: auto;
+        }
+
+        .product-modal-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-modal-section-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 20px;
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #1d2129;
+        }
+
+        .product-modal-section-title span {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 4px;
+        }
+
+        .product-modal-section-title-line {
+            width: 3px;
+            height: 19px;
+            background: #ff6600;
+            border-radius: 2px;
+            margin-right: 4px;
+        }
+
+        /* 基础参数 - 水平布局 */
+        .product-modal-params {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-modal-param {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+            height: 27px;
+        }
+
+        .product-modal-param-label {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4e5969;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .product-modal-param-value {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #1d2129;
+        }
+
+        /* 产品卖点 */
+        .product-modal-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-modal-feature {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+            min-height: 27px;
+        }
+
+        .product-modal-feature-label {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4e5969;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .product-modal-feature-text {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #1d2129;
+            line-height: 1.5;
+        }
+
+        .product-modal-section-title span {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 4px;
+        }
+
+        .product-modal-section-title-line {
+            width: 3px;
+            height: 19px;
+            background: #ff6600;
+            border-radius: 2px;
+            margin-right: 4px;
+        }
+
+        .product-modal-section-title-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff6600;
+            border-radius: 50%;
+        }
+
+        /* 基础参数 - 水平布局 */
+        .product-modal-params {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-modal-param {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+            height: 27px;
+        }
+
+        .product-modal-param-label {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #4e5969;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .product-modal-param-value {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #1d2129;
+        }
+
+        /* 产品卖点 */
+        .product-modal-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-modal-feature {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+            min-height: 27px;
+        }
+
+        .product-modal-feature-label {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #4e5969;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .product-modal-feature-text {
+            font-family: 'PingFang SC', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: #1d2129;
+            line-height: 1.5;
+        }
+
+        .product-modal-feature-content {
+            flex: 1;
+        }
+
+        .product-modal-feature-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1D2129;
+            margin-bottom: 4px;
+        }
+
+        .product-modal-feature-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .product-modal {
+                padding: 0;
+                align-items: flex-end;
+            }
+            .product-modal-content {
+                max-width: 100%;
+                border-radius: 16px 16px 0 0;
+                max-height: 85vh;
+            }
+            .product-modal-body {
+                flex-direction: column;
+            }
+            .product-modal-left {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #E5E6EB;
+            }
+            .product-modal-image {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1110,17 +1519,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- 视频播放器弹窗 -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-container">
-            <button class="video-close" onclick="closeVideo()"></button>
-            <video id="videoPlayer" controls>
-                <source src="" type="video/mp4">
-            </video>
-            <div class="video-title" id="videoTitle"></div>
-        </div>
-    </div>
 
     <section class="hero" id="advantages">
         <div class="hero-bg">
@@ -1155,6 +1553,54 @@
             </div>
         </div>
     </section>
+
+    <!-- 视频播放器弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <button class="video-close" onclick="closeVideo()"></button>
+            <video id="videoPlayer" controls>
+                <source src="" type="video/mp4">
+            </video>
+            <div class="video-title" id="videoTitle"></div>
+        </div>
+    </div>
+
+    <!-- 商品详情弹窗 -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <span class="product-modal-header-title">商品详情</span>
+                <button class="product-modal-close" onclick="closeProductModal()"></button>
+            </div>
+            <div class="product-modal-body">
+                <div class="product-modal-left">
+                    <div class="product-modal-image-container">
+                        <img class="product-modal-image" id="productModalImage" src="" alt="">
+                    </div>
+                    <div class="product-modal-product-info">
+                        <span class="product-modal-title" id="productModalTitle"></span>
+                        <p class="product-modal-desc" id="productModalDesc"></p>
+                    </div>
+                </div>
+                <div class="product-modal-right">
+                    <div class="product-modal-section">
+                        <div class="product-modal-section-title">
+                            <div class="product-modal-section-title-line"></div>
+                            <span>基础参数</span>
+                        </div>
+                        <div class="product-modal-params" id="productModalParams"></div>
+                    </div>
+                    <div class="product-modal-section">
+                        <div class="product-modal-section-title">
+                            <div class="product-modal-section-title-line"></div>
+                            <span>产品卖点</span>
+                        </div>
+                        <div class="product-modal-features" id="productModalFeatures"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="section" id="factory">
         <div class="section-header">
@@ -1220,7 +1666,7 @@
                 <div class="category-tab">卫浴</div>
             </div>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(1)">
                     <div class="product-image">
                         <img src="images/product-1.png" alt="马桶">
                         <div class="product-badge"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>热销</div>
@@ -1228,10 +1674,10 @@
                     <div class="product-content">
                         <h3 class="product-title">五星级同款·微晶智洁马桶</h3>
                         <p class="product-desc">采用纳米级拒污釉面，冲水即净不挂壁，从此告别马桶刷。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(2)">
                     <div class="product-image">
                         <img src="images/product-1.png" alt="马桶">
                         <div class="product-badge new"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>新品</div>
@@ -1239,20 +1685,20 @@
                     <div class="product-content">
                         <h3 class="product-title">深海静音·缓降智能座便器</h3>
                         <p class="product-desc">盖板阻尼缓降设计，深夜如厕不扰家人美梦，通过10万次开合测试。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(3)">
                     <div class="product-image">
                         <img src="images/product-3.png" alt="地板">
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">森林氧·ENF级纯净地板</h3>
                         <p class="product-desc">甲醛释放量低于一个苹果，母婴家庭首选，光脚踩也不冰凉。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(4)">
                     <div class="product-image">
                         <img src="images/product-3.png" alt="地板">
                         <div class="product-badge"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>热销</div>
@@ -1260,10 +1706,10 @@
                     <div class="product-content">
                         <h3 class="product-title">金刚面·耐磨实木复合</h3>
                         <p class="product-desc">6000转商用级耐磨层，无惧宠物抓挠和玩具砸落，十年如新。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(5)">
                     <div class="product-image">
                         <img src="images/product-4.png" alt="瓷砖">
                         <div class="product-badge"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>热销</div>
@@ -1271,30 +1717,30 @@
                     <div class="product-content">
                         <h3 class="product-title">750×1500无限连纹</h3>
                         <p class="product-desc">意大利名石1:1复刻，一石多面无限延伸，小户型也能铺出豪宅感。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(6)">
                     <div class="product-image">
                         <img src="images/product-4.png" alt="瓷砖">
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">肤感·微水泥哑光防滑砖</h3>
                         <p class="product-desc">R10级防滑系数，遇水发涩不打滑，老人小孩洗澡更安心。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(7)">
                     <div class="product-image">
                         <img src="images/product-5.png" alt="瓷砖">
                     </div>
                     <div class="product-content">
                         <h3 class="product-title">大师作·高定编织纹地砖</h3>
                         <p class="product-desc">将布艺纹理烧进瓷砖，既有地毯的温润视觉，又有瓷砖的硬核耐脏。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="openProductModal(8)">
                     <div class="product-image">
                         <img src="images/product-5.png" alt="瓷砖">
                         <div class="product-badge"><svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>热销</div>
@@ -1302,7 +1748,7 @@
                     <div class="product-content">
                         <h3 class="product-title">高密度·通体大理石瓷砖</h3>
                         <p class="product-desc">一线产区出品，双零吸水率，拒绝渗污发黄，切面如玉。</p>
-                        <a href="https://www.bthome.com/hd/qwdz" target="_blank" class="product-btn">查看详情</a>
+                        <span class="product-btn">查看详情</span>
                     </div>
                 </div>
             </div>
@@ -1435,10 +1881,216 @@
             }
         });
 
-        // ESC键关闭
+        // ESC键关闭视频弹窗
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeVideo();
+                closeProductModal();
+            }
+        });
+
+        // 商品数据
+        const products = [
+            {
+                id: 1,
+                title: '五星级同款·微晶智洁马桶',
+                desc: '采用纳米级拒污釉面，冲水即净不挂壁，从此告别马桶刷。',
+                image: 'images/product-1.png',
+                category: '卫浴',
+                params: [
+                    { label: '产品名称', value: '五星级同款·微晶智洁马桶' },
+                    { label: '规格尺寸', value: '400x600mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#FFFFFF(白色)' },
+                    { label: '工艺材质', value: '纳米级拒污釉面' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '纳米级拒污釉面，冲水即净不挂壁' },
+                    { label: '风格适配', value: '现代，极简，欧式' }
+                ]
+            },
+            {
+                id: 2,
+                title: '深海静音·缓降智能座便器',
+                desc: '盖板阻尼缓降设计，深夜如厕不扰家人美梦，通过10万次开合测试。',
+                image: 'images/product-1.png',
+                category: '卫浴',
+                params: [
+                    { label: '产品名称', value: '深海静音·缓降智能座便器' },
+                    { label: '规格尺寸', value: '410x680mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#FFFFFF(白色)' },
+                    { label: '工艺材质', value: '阻尼缓降盖板' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '盖板阻尼缓降设计，深夜如厕不扰家人' },
+                    { label: '风格适配', value: '现代，极简，商务' }
+                ]
+            },
+            {
+                id: 3,
+                title: '森林氧·ENF级纯净地板',
+                desc: '甲醛释放量低于一个苹果，母婴家庭首选，光脚踩也不冰凉。',
+                image: 'images/product-3.png',
+                category: '地板',
+                params: [
+                    { label: '产品名称', value: '森林氧·ENF级纯净地板' },
+                    { label: '规格尺寸', value: '1210x195x15mm' },
+                    { label: '产品等级', value: 'ENF级' },
+                    { label: '色号参考', value: '#D4A574(橡木色)' },
+                    { label: '工艺材质', value: '零醛添加纯净芯材' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '甲醛释放量低于一个苹果，光脚踩不冰凉' },
+                    { label: '风格适配', value: '北欧，日式，现代' }
+                ]
+            },
+            {
+                id: 4,
+                title: '金刚面·耐磨实木复合',
+                desc: '6000转商用级耐磨层，无惧宠物抓挠和玩具砸落，十年如新。',
+                image: 'images/product-3.png',
+                category: '地板',
+                params: [
+                    { label: '产品名称', value: '金刚面·耐磨实木复合' },
+                    { label: '规格尺寸', value: '1220x195x15mm' },
+                    { label: '产品等级', value: 'AC5级' },
+                    { label: '色号参考', value: '#D4A574(橡木色)' },
+                    { label: '工艺材质', value: '6000转金刚面耐磨层' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '6000转商用级耐磨层，无惧宠物抓挠' },
+                    { label: '风格适配', value: '现代，北欧，轻奢' }
+                ]
+            },
+            {
+                id: 5,
+                title: '750×1500无限连纹',
+                desc: '意大利名石1:1复刻，一石多面无限延伸，小户型也能铺出豪宅感。',
+                image: 'images/product-4.png',
+                category: '瓷砖',
+                params: [
+                    { label: '产品名称', value: '750×1500无限连纹' },
+                    { label: '规格尺寸', value: '750x1500mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#E8E8E8(浅灰)' },
+                    { label: '工艺材质', value: '意大利名石复刻' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '一石多面无限延伸，意大利名石1:1复刻' },
+                    { label: '风格适配', value: '现代，极简，豪宅' }
+                ]
+            },
+            {
+                id: 6,
+                title: '肤感·微水泥哑光防滑砖',
+                desc: 'R10级防滑系数，遇水发涩不打滑，老人小孩洗澡更安心。',
+                image: 'images/product-5.png',
+                category: '瓷砖',
+                params: [
+                    { label: '产品名称', value: '肤感·微水泥哑光防滑砖' },
+                    { label: '规格尺寸', value: '300x300mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#C0C0C0(银色)' },
+                    { label: '工艺材质', value: '微水泥哑光釉面' }
+                ],
+                features: [
+                    { label: '纹理质感', value: 'R10级防滑系数，遇水发涩不打滑' },
+                    { label: '风格适配', value: '现代，极简，工业风' }
+                ]
+            },
+            {
+                id: 7,
+                title: '大师作·高定编织纹地砖',
+                desc: '将布艺纹理烧进瓷砖，既有地毯的温润视觉，又有瓷砖的硬核耐脏。',
+                image: 'images/product-5.png',
+                category: '瓷砖',
+                params: [
+                    { label: '产品名称', value: '大师作·高定编织纹地砖' },
+                    { label: '规格尺寸', value: '600x600mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#8B7355(驼色)' },
+                    { label: '工艺材质', value: '布艺纹理全瓷砖' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '布艺纹理烧进瓷砖，地毯温润视觉+瓷砖耐脏' },
+                    { label: '风格适配', value: '美式，北欧，田园' }
+                ]
+            },
+            {
+                id: 8,
+                title: '高密度·通体大理石瓷砖',
+                desc: '一线产区出品，双零吸水率，拒绝渗污发黄，切面如玉。',
+                image: 'images/product-4.png',
+                category: '瓷砖',
+                params: [
+                    { label: '产品名称', value: '高密度·通体大理石瓷砖' },
+                    { label: '规格尺寸', value: '800x800mm' },
+                    { label: '产品等级', value: '优等品' },
+                    { label: '色号参考', value: '#7A8B7A(芙蓉绿)' },
+                    { label: '工艺材质', value: '天然原矿工艺，意大利矿砂洞石原生质感' }
+                ],
+                features: [
+                    { label: '纹理质感', value: '3D立体仿岩石纹理，还原天然洞石原生质感' },
+                    { label: '风格适配', value: '现代，极简，中式' }
+                ]
+            }
+        ];
+
+        // 商品详情弹框功能
+        const productModal = document.getElementById('productModal');
+        const productModalImage = document.getElementById('productModalImage');
+        const productModalTitle = document.getElementById('productModalTitle');
+        const productModalDesc = document.getElementById('productModalDesc');
+
+        const productModalParams = document.getElementById('productModalParams');
+        const productModalFeatures = document.getElementById('productModalFeatures');
+
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                productModalImage.src = product.image;
+                productModalImage.alt = product.title;
+                productModalTitle.textContent = product.title;
+                productModalDesc.textContent = product.desc;
+                
+                // Populate params - horizontal layout with gap
+                productModalParams.innerHTML = product.params.map(param => `
+                    <div class="product-modal-param">
+                        <span class="product-modal-param-label">${param.label}</span>
+                        <span class="product-modal-param-value">${param.value}</span>
+                    </div>
+                `).join('');
+                
+                // Populate features - horizontal layout with label + value
+                productModalFeatures.innerHTML = product.features.map(feature => `
+                    <div class="product-modal-feature">
+                        <span class="product-modal-feature-label">${feature.label}</span>
+                        <span class="product-modal-feature-text">${feature.value}</span>
+                    </div>
+                `).join('');
+                
+                productModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeProductModal() {
+            productModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 点击弹窗背景关闭
+        productModal.addEventListener('click', function(e) {
+            if (e.target === productModal) {
+                closeProductModal();
+            }
+        });
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && productModal.classList.contains('active')) {
+                closeProductModal();
             }
         });
     </script>
