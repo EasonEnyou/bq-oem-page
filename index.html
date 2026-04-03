@@ -2071,13 +2071,16 @@
                 `).join('');
                 
                 productModal.classList.add('active');
+                const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
                 document.body.style.overflow = 'hidden';
+                document.body.style.paddingRight = scrollBarWidth + 'px';
             }
         }
 
         function closeProductModal() {
             productModal.classList.remove('active');
             document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
         }
 
         // 点击弹窗背景关闭
