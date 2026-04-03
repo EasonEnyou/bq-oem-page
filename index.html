@@ -1865,11 +1865,16 @@
             
             // 显示弹窗并播放
             videoModal.classList.add('active');
+            const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = scrollBarWidth + 'px';
             videoPlayer.play();
         }
 
         function closeVideo() {
             videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
             videoPlayer.pause();
             videoPlayer.src = '';
         }
